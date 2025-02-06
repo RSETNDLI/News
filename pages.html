@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive JPG Book Viewer</title>
+    <title>Responsive Book Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,22 +26,21 @@
             padding: 10px;
         }
         .page {
-            width: 100%;
-            max-width: 50vw; /* Each page takes half the screen on large screens */
-            height: auto; /* Maintain aspect ratio */
-            object-fit: contain;
+            max-width: 48vw; /* Each page takes half the screen on desktop */
+            max-height: 95vh; /* Ensures full visibility */
+            object-fit: contain; /* Ensures no cropping */
             box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
             background: white;
         }
-        /* Responsive: On smaller screens (phones), stack images vertically */
+        /* Responsive: Stack images vertically on mobile */
         @media (max-width: 768px) {
             #bookContainer {
                 flex-direction: column;
                 gap: 5px;
             }
             .page {
-                max-width: 100%;
-                max-height: 50vh; /* Each image takes half the screen height */
+                max-width: 90vw; /* Fit within screen width */
+                max-height: 48vh; /* Ensure both images fit within the screen */
             }
         }
     </style>
@@ -52,7 +51,7 @@
 
     <script>
         // List of your image filenames
-        const images = ["page1.jpg", "page2.jpg"]; // Ensure the correct filenames
+        const images = ["page1.jpg", "page2.jpg"]; // Ensure correct filenames
 
         function loadImages() {
             const bookContainer = document.getElementById("bookContainer");
