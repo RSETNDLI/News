@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive JPG Book Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        #bookContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Space between pages */
+            width: 100vw;
+            height: 100vh;
+            padding: 10px;
+        }
+        .page {
+            width: 100%;
+            max-width: 50vw; /* Each page takes half the screen on large screens */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: contain;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+        /* Responsive: On smaller screens (phones), stack images vertically */
+        @media (max-width: 768px) {
+            #bookContainer {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .page {
+                max-width: 100%;
+                max-height: 50vh; /* Each image takes half the screen height */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bookContainer"></div>
+
+    <script>
+        // List of your image filenames
+        const images = ["pages/page1.jpg", "pages/page2.jpg"]; // Ensure the correct filenames
+
+        function loadImages() {
+            const bookContainer = document.getElementById("bookContainer");
+            bookContainer.innerHTML = ""; // Clear existing content
+
+            images.forEach(imgSrc => {
+                let img = document.createElement("img");
+                img.src = imgSrc;
+                img.classList.add("page");
+                bookContainer.appendChild(img);
+            });
+        }
+
+        // Load the images when the page loads
+        loadImages();
+    </script>
+
+</body>
+</html>
